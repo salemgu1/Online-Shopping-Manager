@@ -25,12 +25,14 @@
       <div id="sign-out" class="header-items">Sign out</div>
     </div>
     <div class="row">
-      <div class="col s3"></div>
-      <div class="col s9">
+      <div class="col s2"></div>
+      <div class="col s10">
         <h4 class="title">Orders in the way</h4>
         <div id="orders-container"></div>
       </div>
+    
     </div>
+    <i class="material-icons add">add_circle</i>
 
     <script id="order" type="text/x-handlebars-template">
       {{#each orders}}
@@ -41,6 +43,7 @@
               <div class="day"></div>
             {{/times}}
           </div>
+
           <i class="material-icons col s3 check">check_circle</i>
         </div>
       {{/each}}
