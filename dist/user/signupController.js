@@ -10,5 +10,5 @@ $("#signup-form").on('click', "#submit-btn", function () {
         password: password,
         budget: budget,
     };
-    apiManager.saveUser(user)   
+    apiManager.saveUser(user) 
 })
