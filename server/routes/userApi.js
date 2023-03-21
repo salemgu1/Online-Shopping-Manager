@@ -8,7 +8,6 @@ const User = require("../models/user");
 
 
 router.post("/user", (req, res) => {
-  // console.log(req.query.user);
   const user = new User(req.body);
   User.find({}).then((users, err) => {
     if (err) {
