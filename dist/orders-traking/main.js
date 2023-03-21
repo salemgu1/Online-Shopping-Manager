@@ -1,2 +1,4 @@
 const render = Render();
-render.renderUnDeliveredOrders();
+render.getUnDeliveredOrdersFromDB.then(() => {
+  render.renderUnDeliveredOrders();
+});

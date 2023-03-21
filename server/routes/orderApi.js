@@ -11,6 +11,7 @@ router.get("/undeliverd", function (req, res) {
   Order.find({ isDelivered: false }).then((orders) => {
     let filteredOrders = orders.map((order) => {
       return {
+        id: order.id,
         shopLogo: order.shopLogo,
         days: time.getDatesDiff(order.orderDate, order.arrivalDate),
         dayesPassed: time.getPassedDays(order.orderDate),

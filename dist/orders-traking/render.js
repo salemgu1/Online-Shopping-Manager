@@ -1,5 +1,6 @@
 const Render = function () {
   const orders = [];
+  const orderApi = new OrderApiManager();
   // const orders = [
   //   {
   //     id: 0,
@@ -17,9 +18,11 @@ const Render = function () {
   //   },
   // ];
 
-    const getUnDeliveredOrdersFromDB = function () {
-        
-    };
+  const getUnDeliveredOrdersFromDB = function () {
+    orderApi.getUndeliveredOrders().then((result) => {
+      orders = result;
+    });
+  };
 
   const renderUnDeliveredOrders = function () {
     const orderSource = $("#order").html();
@@ -41,5 +44,6 @@ const Render = function () {
 
   return {
     renderUnDeliveredOrders,
+    getUnDeliveredOrdersFromDB,
   };
 };
