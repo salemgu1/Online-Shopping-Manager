@@ -4,7 +4,6 @@ class Renderer {
     getInputsValues(){
         let shopname = $("#shopname").val()
         let logo = `${LOGO_API}${shopname}.com`
-        $("#order-form").prepend(`<img id="logo" src=${logo} width="90px" height="90px">`)
         let price = $("#price").val()
         let orderDate = $("#orderDate").val()
         let arrivalDate = $("#arrivalDate").val()
@@ -20,5 +19,13 @@ class Renderer {
             "items" : ["shirt","jacket"],
             "isDelivered" : false
         }
+
+    }
+    clearInputs(){
+        $("#shopname").val("")
+        $("#price").val("")
+        $("#orderDate").val("")
+        $("#arrivalDate").val("")
+        $("#category").val("")
     }
 }
