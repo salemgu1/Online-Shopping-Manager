@@ -2,19 +2,24 @@ body {
   background-color: #ecf9ff;
   padding: 0;
 }
+
 .header {
+  margin-top: 2rem;
   height: 5rem;
   color: #3d6d83;
   font-size: 1.5rem;
 }
+
+
 .order {
   width: 70%;
   margin: 3rem;
 }
+
 .bar {
   display: grid;
   grid-auto-flow: column;
-  background-color: DodgerBlue;
+  background-color: #3d6d83;
   width: 60%;
   float: right;
   padding: 0.2rem !important;
@@ -24,16 +29,17 @@ body {
   margin: 2px;
   text-align: center;
   height: 3.5rem;
+  border-radius: 20%;
 }
 .bar .passed {
-  background-color: #62cdff;
+  background-color: #6da1b9;
 }
 .icon {
   height: 5rem;
   width: 5rem;
 }
 .check {
-  color: greenyellow;
+  color: #6da1b9;
   font-size: 3rem;
 }
 .title {
@@ -51,4 +57,15 @@ body {
 }
 #budget {
   right: 30%;
+}
+
+.add {
+  position: absolute;
+  color: #3d6d83;
+  font-size: 5rem;
+  right: 20%;
+}
+
+.material-icons:hover {
+  cursor: pointer;
 }
