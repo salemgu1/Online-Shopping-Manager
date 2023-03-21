@@ -11,4 +11,11 @@ $("#signup-form").on('click', "#submit-btn", function () {
         budget: budget,
     };
     apiManager.saveUser(user)
+    clearInputs()
 })
+
+function clearInputs(){
+    $('#username').val("");
+    $('#password').val("");
+    $('#budget').val("");
+}
