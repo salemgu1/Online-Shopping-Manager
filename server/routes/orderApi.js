@@ -1,13 +1,11 @@
-const express = require('express')
-const { Schema } = require('mongoose')
-const Order = require('../models/order')
-const User = require('../models/user')
+const express = require("express");
+const { Schema } = require("mongoose");
+const Order = require("../models/order");
+const User = require("../models/user");
+const router = express.Router();
+const time = require("../utils/time");
 
-
-const orderUtils = require("../utils/order_utils")
-
-
-const router = express.Router()
+const orderUtils = require("../utils/order_utils");
 
 router.get("/undeliverd", function (req, res) {
   Order.find({ isDelivered: false }).then((orders) => {
@@ -23,24 +21,28 @@ router.get("/undeliverd", function (req, res) {
   });
 });
 
-router.post('/create',function (req,res) {
-    let newUser = User({
-        username: "salem gode",
-        password: "1234",
-        budget: 500
-    })
+router.post("/create", function (req, res) {
+  let newUser = User({
+    username: "salem gode",
+    password: "1234",
+    budget: 500,
+  });
 
-    let orderInfo = req.body
-    let newOrder = orderUtils.createOrder(newUser,orderInfo)
-    res.send(newOrder)
-})
+  let orderInfo = req.body;
+  let newOrder = orderUtils.createOrder(newUser, orderInfo);
+  res.send(newOrder);
+});
 
-router.put('/update', function(req, res){
-    const id = req.query.id
-    console.log(id)
-    Order.findByIdAndUpdate(id, {isDelivered: true}).then(function (err, order) {
-        console.log(order)})
-    res.end()
-})
+router.put("/update", function (req, res) {
+  const id = req.query.id;
+  console.log(id);
+  Order.findByIdAndUpdate(id, { isDelivered: true }).then(function (
+    err,
+    order
+  ) {
+    console.log(order);
+  });
+  res.end();
+});
 
-module.exports = router
+module.exports = router;
