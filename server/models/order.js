@@ -4,7 +4,6 @@ const Schema = mongoose.Schema
 
 
 const orderSchema = new Schema({
-    userName : {type: Schema.Types.ObjectId, ref:"User"},
     shopName : String,
     shopLogo : String,
     orderPrice : Number,
