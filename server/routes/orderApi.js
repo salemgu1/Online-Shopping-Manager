@@ -25,7 +25,7 @@ router.post('/create',function (req,res) {
 router.put('/update', function(req, res){
     const id = req.query.id
     console.log(id)
-    Order.findByIdAndUpdate(Mongoose.Types.ObjectId(id), {isDelivered: true}).then(function (err, order) {
+    Order.findByIdAndUpdate(id, {isDelivered: true}).then(function (err, order) {
         console.log(order)})
     res.end()
 })

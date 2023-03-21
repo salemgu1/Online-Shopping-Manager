@@ -4,6 +4,7 @@ class OrderApiManager {
         $.post('/order/create',order)
     }
     
+
 }
 
 

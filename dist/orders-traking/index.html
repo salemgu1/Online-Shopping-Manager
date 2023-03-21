@@ -17,12 +17,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    
     <title>Document</title>
   </head>
   <body>
     <div class="header">
       <div id="budget" class="header-items">Budget</div>
-      <div id="sign-out" class="header-items" id="sign-out">Sign out</div>
+      <button onclick="SignOut()" id="sign-out" class="header-items">Sign out</button>
     </div>
     <div class="row">
       <div class="col s2"></div>
@@ -32,7 +33,7 @@
       </div>
     
     </div>
-    <i class="material-icons add" id="add-button">add_circle</i>
+    <i onclick="addOrder()" class="material-icons add">add_circle</i>
 
     <script id="order-template" type="text/x-handlebars-template">
       {{#each orders}}
