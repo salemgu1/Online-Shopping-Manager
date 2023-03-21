@@ -1,14 +1,12 @@
 class userApiManager {
-    constructor() {
-
-    }
-    saveUser(user) {
-        console.log("asdasdasdtyui");
-        console.log(user);
-        $.post('/user', user);   
-    }
+  constructor() {}
+  saveUser(user) {
+    $.post("/user", user)
+      .then((result) => {
+        alert("user added successfuly");
+      })
+      .catch((error) => {
+        alert("invalid username")
+      });
   }
-  
-  
-  
-  
+}

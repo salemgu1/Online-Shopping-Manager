@@ -11,11 +11,11 @@ router.post("/user", (req, res) => {
       res.status(500).send(err);
     } else {
       const usersArray = getUsers(users);
-      if (existUser(usersArray, user.username)) {
-        res.status(401).send(`invalid username '${user.username}'`);
+      if (existUser(usersArray, user.username) || user.username === "") {
+        return res.status(401).send(`invalid username '${user.username}'`);
       } else {
         const savedUser = user.save();
-        res.status(201).json(savedUser);
+        return res.status(201).json(savedUser);
       }
     }
   });
