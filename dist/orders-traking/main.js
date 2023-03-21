@@ -1,4 +1,26 @@
 const render = Render();
-render.getUnDeliveredOrdersFromDB.then(() => {
-  render.renderUnDeliveredOrders();
-});
+render.renderUnDeliveredOrders();
+
+
+
+
+function SignOut() {
+    window.location.href = "../index.html";
+}
+
+function addOrder() {
+    window.location.href = "../order/order_form.html";
+}
+
+
+
+
+
+
+function SignOut() {
+    window.location.href = "../index.html";
+}
+
+function addOrder() {
+    window.location.href = "../order/order_form.html";
+}

@@ -3,7 +3,6 @@ const orderManager = new OrderApiManager()
 
 
 function saveOrder() {
-    $("#logo").empty()
     let order = render.getInputsValues()
     orderManager.createOrder(order)
     render.clearInputs()
