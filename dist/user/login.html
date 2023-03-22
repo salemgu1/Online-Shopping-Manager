@@ -2,25 +2,42 @@
 <html>
   <head>
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="signup.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <script
+      src="https://kit.fontawesome.com/7413959eec.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@500&family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <form id="login-form">
-      <h1>Login Page</h1>
       <form>
-        <label for="uname"><b>Username</b></label>
-        <input id="uname" type="text" placeholder="Enter Username" name="uname" required>
-        <label for="psw"><b>Password</b></label>
-        <input id = "psw" type="password" placeholder="Enter Password" name="psw" required>
+        <input
+          id="uname"
+          type="text"
+          placeholder="Enter Username"
+          name="uname"
+          required
+        />
+
+        <input
+          id="psw"
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+        />
         <button type="submit">Login</button>
       </form>
     </form>
-
+    <div id="phrase"><p>keep your online orders in line</p></div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <script src="../userModel.js"></script>
     <script src="../render.js"></script>
-
 
     <script src="./userController.js"></script>
   </body>
