@@ -4,11 +4,13 @@ const Order = require("../models/order");
 const User = require("../models/user");
 const router = express.Router();
 const time = require("../utils/time");
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
+
 
 const orderUtils = require("../utils/order_utils");
 
 router.get("/undeliverd", function (req, res) {
+  console.log("request come");
   Order.find({ isDelivered: false }).then((orders) => {
     let filteredOrders = orders.map((order) => {
       return {
@@ -22,16 +24,13 @@ router.get("/undeliverd", function (req, res) {
   });
 });
 
-router.post("/create", function (req, res) {
-  let newUser = User({
-    username: "salem gode",
-    password: "1234",
-    budget: 500,
-  });
 
+
+router.post("/create", async function (req, res) {
   let orderInfo = req.body;
-  let newOrder = orderUtils.createOrder(newUser, orderInfo);
-  res.send(newOrder);
+  let newOrder = orderUtils.createOrder(orderInfo);
+  let user = await User.findOneAndUpdate({ username: 'salem' } , { "$push": { "orders": newOrder } }, {new: true})
+  res.send(user)
 });
 
 router.put("/update", function (req, res) {

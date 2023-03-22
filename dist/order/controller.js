@@ -2,10 +2,14 @@ const render = new Renderer()
 const orderManager = new OrderApiManager()
 
 
-function saveOrder() {
-    let order = render.getInputsValues()
-    orderManager.createOrder(order)
-    render.clearInputs()
+async function saveOrder() {
+    let order = await render.getInputsValues()
+    if (order) {
+        orderManager.createOrder(order)
+        render.clearInputs()
+        window.location.href = "../orders-traking/index.html"
+    }
+    
 }
 
 

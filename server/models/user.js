@@ -6,10 +6,6 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((error) => console.log("cant Connected to MongoDB", error));
 
-// mongoose
-//   .connect("mongodb://localhost/onlineShopping")
-//   .then(() => console.log("Connected to MongoDB"))
-//   .catch((error) => console.log("cant Connected to MongoDB", error));
 
 const userSchema = new mongoose.Schema({
   username: String,
