@@ -40,6 +40,9 @@ body {
 }
 .title {
   color: #3d6d83;
+  font-family: "Dancing Script", cursive;
+  font-size: 3rem;
+  font-weight: bold;
 }
 .header-items {
   display: inline-block;
