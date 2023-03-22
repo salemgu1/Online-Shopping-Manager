@@ -17,7 +17,7 @@ const Render = function () {
       colorPassedDays();
     });
   };
-
+  
   const colorPassedDays = function () {
     orders.forEach((order) => {
       let days = $(`[data-id=${order.id}]`).find(".day");
@@ -26,8 +26,22 @@ const Render = function () {
       }
     });
   };
+  const renderInSortingOrder = function(sortedOrders){
+    
+    orders = sortedOrders
+    const orderSource = $("#order-template").html();
+    const orderTemplate = Handlebars.compile(orderSource);
+    $("#orders-container").empty();
+    let newElem = orderTemplate({orders});
+    $("#orders-container").append(newElem);
+    colorPassedDays();
+  };
 
   return {
     renderUnDeliveredOrders,
+    renderInSortingOrder
+
   };
+
+  
 };

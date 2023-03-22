@@ -1,6 +1,8 @@
 const render = Render();
 render.renderUnDeliveredOrders();
 
+
+
 function SignOut() {
   window.location.href = "../index.html";
 }
@@ -15,3 +17,11 @@ function removeElement(){
     url: `http://localhost:3000/order/update?id=${id}`})
   $(this).closest('.order').empty()
 }
+
+$('.sorting').change(function(){
+const sortBy = $(this).data().sort
+$.get(`http://localhost:3000/order/sort?sort=${sortBy}`).then(orders =>{
+
+    render.renderInSortingOrder(orders)
+})
+})

@@ -41,9 +41,32 @@
       <div class="col s2"></div>
       <div class="col s10">
         <h4 class="title">Orders on the way</h4>
+        <div class="sort">
+          <form action="#" class="sort" >
+            <p>
+              <label>
+                <input data-sort="date" name="group1" type="radio" class="sorting"/>
+                <span>by arrival date</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="group1"  type="radio" data-sort="cost" class="sorting"/>
+                <span>by order cost</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input class="with-gap sorting" name="group1" type="radio" data-sort="app"  />
+                <span>by shop name</span>
+              </label>
+            </p>
+          </form>
+        </div>
         <div id="orders-container"></div>
       </div>
     </div>
+    
     <i onclick="addOrder()" class="material-icons add">add_circle</i>
 
     <script id="order-template" type="text/x-handlebars-template">

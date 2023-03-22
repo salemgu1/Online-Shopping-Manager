@@ -42,7 +42,8 @@ body {
   color: #3d6d83;
   font-family: "Dancing Script", cursive;
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: bold;  
+  display: inline-block;
 }
 .header-items {
   display: inline-block;
@@ -69,4 +70,8 @@ body {
 #sign-out:hover {
   cursor: pointer;
   font-size: 1.7rem;
+}
+.sort{
+  display: inline-flex;
+  margin-left: 20px;
 }
