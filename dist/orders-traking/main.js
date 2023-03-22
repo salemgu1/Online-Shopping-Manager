@@ -8,3 +8,4 @@ function SignOut() {
 function addOrder() {
   window.location.href = "../order/order_form.html";
 }
+
