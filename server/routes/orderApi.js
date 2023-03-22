@@ -13,7 +13,7 @@ const orderUtils = require("../utils/order_utils");
 router.get("/undeliverd", authenticateToken, async function (req, res) {
   try {
     const user = await findUser(req.user.id, req.user.username);
-    console.log("request come");
+
     let orderForUserIDS = user[0].orders;
     getOrders(orderForUserIDS).then((result) => {
       let filteredOrders = result.map((order) => {
@@ -30,7 +30,7 @@ router.get("/undeliverd", authenticateToken, async function (req, res) {
       res.send({ username: user[0].username, orders: filteredOrders });
     });
   } catch (error) {
-    console.log(error);
+
     res.status(401).send({ message: "Invalid token" });
   }
 });
@@ -52,7 +52,7 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, secretKey, (err, user) => {
     if (err) {
-      console.log("error");
+
       return res.sendStatus(401);
     }
     //defnie which user is this after token authentication
@@ -69,7 +69,7 @@ function findUser(id, currentUsername) {
 
 router.post("/create", authenticateToken, async function (req, res) {
   const userObj = await findUser(req.user.id, req.user.username);
-  console.log(userObj[0].username);
+
   let orderInfo = req.body;
   let newOrder = orderUtils.createOrder(orderInfo);
   let user = await User.findOneAndUpdate(
@@ -81,7 +81,7 @@ router.post("/create", authenticateToken, async function (req, res) {
 });
 
 router.put("/update", function (req, res) {
-  console.log(req.query.id);
+
   Order.findByIdAndUpdate(req.query.id, { isDelivered: true }).then(() =>
     res.end()
   );
