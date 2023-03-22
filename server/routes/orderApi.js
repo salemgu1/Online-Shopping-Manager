@@ -86,22 +86,36 @@ router.put("/update", function (req, res) {
     res.end()
   );
 });
-router.get("/sort", function (req, res) {
+router.get("/sort", authenticateToken , async function (req, res) {
   const sortBy = req.query.sort;
+  const user = await findUser(req.user.id, req.user.username);
+  let orderForUserIDS = user[0].orders;
   if (sortBy == "app") {
-    Order.find({})
-      .sort({ shopName: 1 })
-      .then((orders) => res.send(filterOrders(orders)));
-  } else if (sortBy === "cost") {
-    Order.find({})
-      .sort({ orderPrice: -1 })
-      .then((orders) => {
-        res.send(filterOrders(orders));
+    getOrders(orderForUserIDS)
+    .then((orders) => {
+      orders = orders.sort(function (a, b) {
+        if (a.shopName.toLowerCase() < b.shopName.toLowerCase()) {
+          return -1;
+        }
+        if (a.shopName.toLowerCase() > b.shopName.toLowerCase()) {
+          return 1;
+        }
+        return 0;
       });
+      res.send(filterOrders(orders))
+    })
+  } else if (sortBy === "cost") {
+    getOrders(orderForUserIDS)
+      .then((orders) => {
+        orders = orders.sort((a,b) => a.orderPrice - b.orderPrice)
+        res.send(filterOrders(orders))
+      })
   } else if (sortBy == "date") {
-    Order.find({})
-      .sort({ arrivalDate: 1 })
-      .then((orders) => res.send(filterOrders(orders)));
+    getOrders(orderForUserIDS)
+      .then((orders) => {
+        orders = orders.sort((a,b) => new Date(a.arrivalDate) - new Date(b.arrivalDate))
+        res.send(filterOrders(orders))
+      })
   }
 });
 function filterOrders(orders) {
@@ -112,9 +126,13 @@ function filterOrders(orders) {
       days: time.getDatesDiff(order.orderDate, order.arrivalDate),
       dayesPassed: time.getPassedDays(order.orderDate),
       description: order.description,
-      isDelivered: order.isDelivered
+      isDelivered: order.isDelivered,
+      orderPrice: order.orderPrice,
+      shopName: order.shopName
     };
   });
+  filteredOrders = filteredOrders.filter(o => o.isDelivered == false)
+
   return filteredOrders;
 }
 
