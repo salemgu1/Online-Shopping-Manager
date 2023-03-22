@@ -11,16 +11,3 @@ function SignOut() {
 function addOrder() {
     window.location.href = "../order/order_form.html";
 }
-
-
-
-
-
-
-function SignOut() {
-    window.location.href = "../index.html";
-}
-
-function addOrder() {
-    window.location.href = "../order/order_form.html";
-}
