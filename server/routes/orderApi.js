@@ -6,6 +6,7 @@ const router = express.Router();
 const time = require("../utils/time");
 const mongoose = require("mongoose");
 
+
 const orderUtils = require("../utils/order_utils");
 
 router.get("/undeliverd", function (req, res) {
@@ -37,9 +38,8 @@ router.post("/create", function (req, res) {
 
 router.put("/update", function (req, res) {
   console.log(req.query.id);
-  Order.findByIdAndUpdate(req.query.id, { isDelivered: true }).then(() =>
-    res.end()
-  );
+  Order.findByIdAndUpdate(req.query.id, { isDelivered: true }).then(()=> res.end())
+
 });
 
 module.exports = router;
