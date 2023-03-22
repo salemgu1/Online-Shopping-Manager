@@ -12,5 +12,5 @@ function goToSignup() {
 }
 
 function goToSignin() {
-    window.location.href = "./orders-traking/index.html";
+    window.location.href = "./user/login.html";
 }

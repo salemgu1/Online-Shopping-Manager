@@ -1,0 +1,71 @@
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin: 100px auto;
+    max-width: 400px;
+    padding: 20px;
+  }
+  h1 {
+    text-align: center;
+  }
+  input[type=text], input[type=password] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  .container form {
+    border: none;
+  }
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+  /* Responsive layout - when the screen is less than 600px wide, make the login form stack on top of each other */
+  @media screen and (max-width: 600px) {
+    .container {
+      width: 100%;
+    }
+    input[type=text], input[type=password] {
+      width: 100%;
+      margin-top: 0;
+    }
+    button {
+      width: 100%;
+    }
+  }
