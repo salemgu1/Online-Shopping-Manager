@@ -2,6 +2,7 @@ const render = Render();
 render.renderUnDeliveredOrders();
 
 function SignOut() {
+  localStorage.removeItem('token');
   window.location.href = "../index.html";
 }
 
