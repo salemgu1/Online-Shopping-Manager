@@ -1,6 +1,8 @@
 const render = Render();
 render.renderUnDeliveredOrders();
 
+
+
 function SignOut() {
   window.location.href = "../index.html";
 }
@@ -16,6 +18,13 @@ function removeElement() {
   $(this).closest(".order").empty();
 }
 
+$('.sorting').change(function(){
+const sortBy = $(this).data().sort
+$.get(`http://localhost:3000/order/sort?sort=${sortBy}`).then(orders =>{
+
+    render.renderInSortingOrder(orders)
+})
+})
 let renderOrders = render.renderUnDeliveredOrders;
 
 setInterval(renderOrders, 60000 * 60);

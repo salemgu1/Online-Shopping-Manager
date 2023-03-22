@@ -38,5 +38,30 @@ router.put("/update", function (req, res) {
   Order.findByIdAndUpdate(req.query.id, { isDelivered: true }).then(()=> res.end())
 
 });
+router.get("/sort", function(req, res){
+  const sortBy = req.query.sort
+  if(sortBy == "app"){
+    Order.find({}).sort({shopName: -1}).then(orders => res.send(filterOrders(orders)))
+  }
+  else if(sortBy === "cost"){
+    Order.find({}).sort({orderPrice: -1}).then(orders => {
+      res.send(filterOrders(orders))
+    })
+  }
+  else if(sortBy == 'date'){
+    Order.find({}).sort({arrivalDate: 1}).then(orders => res.send(filterOrders(orders)))
+  }
+})
+function filterOrders(orders){
+  let filteredOrders = orders.map((order) => {
+    return {
+      id: order.id,
+      shopLogo: order.shopLogo,
+      days: time.getDatesDiff(order.orderDate, order.arrivalDate),
+      dayesPassed: time.getPassedDays(order.orderDate),
+    };
+  });
+  return filteredOrders
+}
 
 module.exports = router;

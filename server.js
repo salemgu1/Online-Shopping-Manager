@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended : false}))
 app.use(express.static(path.join(__dirname, 'dist')))
     
 
-app.use('/user',userApi)
+app.use('/',userApi)
 app.use('/order',orderApi)
 
 
