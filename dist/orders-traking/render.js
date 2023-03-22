@@ -6,7 +6,7 @@ const Render = function () {
     orders = await orderApi.getUndeliveredOrders();
     return orders;
   };
-
+  
   const renderUnDeliveredOrders = function () {
     getUnDeliveredOrdersFromDB().then(() => {
       const orderSource = $("#order-template").html();

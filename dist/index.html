@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>My Page</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script
+      src="https://kit.fontawesome.com/7413959eec.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@500&family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
   </head>
+  <body>
     <div id="sidebar">
-      <button onclick="goToSignin()">Login</button>
-      <button id = "signup">Register</button>
-      <button onclick="location.href='forgetpassword.html'">Forget Password</button>
+      <button onclick="goToSignin()">
+        <span>Login </span><i class="fa-solid fa-right-to-bracket  fa-lg"></i>
+      </button>
+      <button id="signup">
+        <span>Register</span> <i class="fa-solid fa-id-card  fa-lg"></i>
+      </button>
+      <button onclick="location.href='forgetpassword.html'">
+        <span>Forget Password </span> <i class="fa-solid fa-lock  fa-lg"></i>
+      </button>
     </div>
-    <div id="content">
-      <h1>Welcome</h1>
-    </div>
+
+    <div id="phrase"><p>keep your online orders in line</p></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
