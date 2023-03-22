@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--Import Google Icon Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@500&family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/7413959eec.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -17,35 +27,39 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    
+
     <title>Document</title>
   </head>
   <body>
     <div class="header">
       <div id="budget" class="header-items">Budget</div>
-      <button onclick="SignOut()" id="sign-out" class="header-items">Sign out</button>
+      <div onclick="SignOut()" id="sign-out" class="header-items">
+        Sign out <i class="fa-solid fa-right-from-bracket"></i>
+      </div>
     </div>
     <div class="row">
       <div class="col s2"></div>
       <div class="col s10">
-        <h4 class="title">Orders in the way</h4>
+        <h4 class="title">Orders on the way</h4>
         <div id="orders-container"></div>
       </div>
-    
     </div>
     <i onclick="addOrder()" class="material-icons add">add_circle</i>
 
     <script id="order-template" type="text/x-handlebars-template">
       {{#each orders}}
         <div class="order row">
-          <img class="icon col s2" src="{{appIcon}}" alt="" />
+          <img class="icon col s2" src="{{shopLogo}}" />
           <div class="bar col s7" data-id="{{id}}">
             {{#times days}}
               <div class="day"></div>
             {{/times}}
           </div>
 
-          <i class="material-icons col s3 check" class="delivered">check_circle</i>
+          <i
+            class="material-icons col s3 check"
+            class="delivered"
+          >check_circle</i>
         </div>
       {{/each}}
     </script>
@@ -53,6 +67,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <script src="./utils/handelbars_helpers.js"></script>
+    <script src="model.js"></script>
     <script src="render.js"></script>
     <script src="main.js"></script>
   </body>
