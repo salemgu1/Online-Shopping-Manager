@@ -21,16 +21,13 @@ router.get("/undeliverd", function (req, res) {
   });
 });
 
-router.post("/create", function (req, res) {
-  let newUser = User({
-    username: "salem gode",
-    password: "1234",
-    budget: 500,
-  });
 
+
+router.post("/create", async function (req, res) {
   let orderInfo = req.body;
-  let newOrder = orderUtils.createOrder(newUser, orderInfo);
-  res.send(newOrder);
+  let newOrder = orderUtils.createOrder(orderInfo);
+  let user = await User.findOneAndUpdate({ username: 'salem' } , { "$push": { "orders": newOrder } }, {new: true})
+  res.send(user)
 });
 
 router.put("/update", function (req, res) {
