@@ -10,7 +10,7 @@ const orderSchema = new Schema({
     orderDate : Date,
     arrivalDate : Date,
     category : String,
-    items : [String],
+    description : String,
     isDelivered : Boolean
 })
 
