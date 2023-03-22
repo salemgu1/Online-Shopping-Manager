@@ -1,8 +1,6 @@
 const render = Render();
 render.renderUnDeliveredOrders();
 
-
-
 function SignOut() {
   window.location.href = "../index.html";
 }

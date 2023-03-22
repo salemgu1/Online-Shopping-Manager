@@ -18,6 +18,7 @@ router.get("/undeliverd", function (req, res) {
         shopLogo: order.shopLogo,
         days: time.getDatesDiff(order.orderDate, order.arrivalDate),
         dayesPassed: time.getPassedDays(order.orderDate),
+        description: order.description,
       };
     });
     res.send(filteredOrders);
@@ -59,6 +60,7 @@ function filterOrders(orders){
       shopLogo: order.shopLogo,
       days: time.getDatesDiff(order.orderDate, order.arrivalDate),
       dayesPassed: time.getPassedDays(order.orderDate),
+      description: order.description,
     };
   });
   return filteredOrders

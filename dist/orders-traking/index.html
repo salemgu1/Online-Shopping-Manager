@@ -72,7 +72,7 @@
 
     <script id="order-template" type="text/x-handlebars-template">
       {{#each orders}}
-        <div class="order row">
+        <div class="order row" title={{description}}>
           <img class="icon col s2" src="{{shopLogo}}" />
           <div class="bar col s7" data-id="{{id}}">
             {{#times days}}
