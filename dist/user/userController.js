@@ -1,26 +1,24 @@
 const apiManager = new userApiManager();
 
+$("#signup-form").on("click", "#submit-btn", function () {
+  let username = $("#username").val();
+  let password = $("#password").val();
+  let budget = $("#budget").val();
+  let user = {
+    username: username,
+    password: password,
+    budget: budget,
+  };
+  console.log(user);
+  apiManager.saveUser(user);
+  clearInputs();
+});
 
-$("#signup-form").on('click', "#submit-btn", function () {
-    let username = $('#username').val();
-    let password = $('#password').val();
-    let budget = $('#budget').val();
-    let user = {
-        username: username,
-        password: password,
-        budget: budget,
-    };
-    console.log(user);
-    apiManager.saveUser(user)
-    clearInputs()
-})
-
-function clearInputs(){
-    $('#username').val("");
-    $('#password').val("");
-    $('#budget').val("");
+function clearInputs() {
+  $("#username").val("");
+  $("#password").val("");
+  $("#budget").val("");
 }
-
 
 // Get the form and submit button elements
 const loginForm = document.querySelector("#login-form");
@@ -31,7 +29,7 @@ loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const username = $("#uname").val();
-  const password =$("#psw").val();
+  const password = $("#psw").val();
   console.log(password);
 
   $.ajax({
