@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="signup.css" />
+  </head>
+  <body>
+    <form id="login-form">
+      <h1>Login Page</h1>
+      <form>
+        <label for="uname"><b>Username</b></label>
+        <input id="uname" type="text" placeholder="Enter Username" name="uname" required>
+        <label for="psw"><b>Password</b></label>
+        <input id = "psw" type="password" placeholder="Enter Password" name="psw" required>
+        <button type="submit">Login</button>
+      </form>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="../userModel.js"></script>
+    <script src="../render.js"></script>
+
+
+    <script src="./userController.js"></script>
+  </body>
+</html>
