@@ -14,7 +14,7 @@ $("#orders-container").on("click", ".delivered", removeElement);
 function removeElement() {
   const id = $(this).closest(".order").find(".bar").data().id;
   $.ajax({ method: "PUT", url: `http://localhost:3000/order/update?id=${id}` });
-  $(this).closest(".order").empty();
+  render.renderUnDeliveredOrders()
 }
 
 $('.sorting').change(function(){

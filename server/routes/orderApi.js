@@ -23,8 +23,10 @@ router.get("/undeliverd", authenticateToken, async function (req, res) {
           days: time.getDatesDiff(order.orderDate, order.arrivalDate),
           dayesPassed: time.getPassedDays(order.orderDate),
           description: order.description,
+          isDelivered: order.isDelivered
         };
       });
+      filteredOrders = filteredOrders.filter(o => o.isDelivered == false)
       res.send({ username: user[0].username, orders: filteredOrders });
     });
   } catch (error) {
