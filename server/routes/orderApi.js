@@ -90,7 +90,7 @@ router.get("/sort", function (req, res) {
   const sortBy = req.query.sort;
   if (sortBy == "app") {
     Order.find({})
-      .sort({ shopName: -1 })
+      .sort({ shopName: 1 })
       .then((orders) => res.send(filterOrders(orders)));
   } else if (sortBy === "cost") {
     Order.find({})
@@ -112,6 +112,7 @@ function filterOrders(orders) {
       days: time.getDatesDiff(order.orderDate, order.arrivalDate),
       dayesPassed: time.getPassedDays(order.orderDate),
       description: order.description,
+      isDelivered: order.isDelivered
     };
   });
   return filteredOrders;
