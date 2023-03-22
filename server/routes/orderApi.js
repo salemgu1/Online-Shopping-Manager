@@ -23,9 +23,9 @@ router.get("/undeliverd", authenticateToken, async function (req, res) {
           days: time.getDatesDiff(order.orderDate, order.arrivalDate),
           dayesPassed: time.getPassedDays(order.orderDate),
           description: order.description,
-      };
+        };
       });
-      res.send(filteredOrders);
+      res.send({ username: user[0].username, orders: filteredOrders });
     });
   } catch (error) {
     console.log(error);
@@ -47,7 +47,7 @@ function authenticateToken(req, res, next) {
   if (!token) {
     return res.sendStatus(401);
   }
-  // if the token is correct it gets from it the data we encurpt in it {id:2, username: lotemh}
+
   jwt.verify(token, secretKey, (err, user) => {
     if (err) {
       console.log("error");
@@ -101,8 +101,8 @@ router.get("/sort", function (req, res) {
       .sort({ arrivalDate: 1 })
       .then((orders) => res.send(filterOrders(orders)));
   }
-})
-function filterOrders(orders){
+});
+function filterOrders(orders) {
   let filteredOrders = orders.map((order) => {
     return {
       id: order.id,
@@ -112,7 +112,7 @@ function filterOrders(orders){
       description: order.description,
     };
   });
-  return filteredOrders
+  return filteredOrders;
 }
 
 module.exports = router;

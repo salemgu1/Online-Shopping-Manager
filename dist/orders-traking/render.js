@@ -1,12 +1,23 @@
 const Render = function () {
   orders = [];
+  let username = "";
   const orderApi = new OrderApiManager();
 
   const getUnDeliveredOrdersFromDB = async function () {
-    orders = await orderApi.getUndeliveredOrders();
-    return orders;
+    userAndOrders = await orderApi.getUndeliveredOrders();
+    username = userAndOrders.username;
+    orders = userAndOrders.orders;
+    return userAndOrders;
   };
-  
+
+  const renderUserName = function () {
+    const userSource = $("#user-template").html();
+    const userTemplate = Handlebars.compile(userSource);
+    $("#wellcome-user").empty();
+    let newElem = userTemplate({ username });
+    $("#wellcome-user").append(newElem);
+  };
+
   const renderUnDeliveredOrders = function () {
     getUnDeliveredOrdersFromDB().then(() => {
       const orderSource = $("#order-template").html();
@@ -14,10 +25,11 @@ const Render = function () {
       $("#orders-container").empty();
       let newElem = orderTemplate({ orders });
       $("#orders-container").append(newElem);
+      renderUserName();
       colorPassedDays();
     });
   };
-  
+
   const colorPassedDays = function () {
     orders.forEach((order) => {
       let days = $(`[data-id=${order.id}]`).find(".day");
@@ -26,22 +38,18 @@ const Render = function () {
       }
     });
   };
-  const renderInSortingOrder = function(sortedOrders){
-    
-    orders = sortedOrders
+  const renderInSortingOrder = function (sortedOrders) {
+    orders = sortedOrders;
     const orderSource = $("#order-template").html();
     const orderTemplate = Handlebars.compile(orderSource);
     $("#orders-container").empty();
-    let newElem = orderTemplate({orders});
+    let newElem = orderTemplate({ orders });
     $("#orders-container").append(newElem);
     colorPassedDays();
   };
 
   return {
     renderUnDeliveredOrders,
-    renderInSortingOrder
-
+    renderInSortingOrder,
   };
-
-  
 };

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/node_modules/node-schedule/index.js"></script>
     <!--Import Google Icon Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,41 +32,58 @@
   </head>
   <body>
     <div class="header">
+      <div id="wellcome-user"></div>
       <div id="budget" class="header-items">Budget</div>
       <div onclick="SignOut()" id="sign-out" class="header-items">
         Sign out <i class="fa-solid fa-right-from-bracket"></i>
       </div>
     </div>
+    <div class="sort" id="soting">
+      <form action="#" class="sort">
+        <p>
+          <label>
+            <input
+              data-sort="date"
+              name="group1"
+              type="radio"
+              class="sorting"
+            />
+            <span>by arrival date</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input
+              name="group1"
+              type="radio"
+              data-sort="cost"
+              class="sorting"
+            />
+            <span>by order cost</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input
+              class="with-gap sorting"
+              name="group1"
+              type="radio"
+              data-sort="app"
+            />
+            <span>by shop name</span>
+          </label>
+        </p>
+      </form>
+    </div>
     <div class="row">
       <div class="col s2"></div>
       <div class="col s10">
         <h4 class="title">Orders on the way</h4>
-        <div class="sort">
-          <form action="#" class="sort" >
-            <p>
-              <label>
-                <input data-sort="date" name="group1" type="radio" class="sorting"/>
-                <span>by arrival date</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input name="group1"  type="radio" data-sort="cost" class="sorting"/>
-                <span>by order cost</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input class="with-gap sorting" name="group1" type="radio" data-sort="app"  />
-                <span>by shop name</span>
-              </label>
-            </p>
-          </form>
-        </div>
+
         <div id="orders-container"></div>
       </div>
     </div>
-    
+
     <i onclick="addOrder()" class="material-icons add">add_circle</i>
 
     <script id="order-template" type="text/x-handlebars-template">
@@ -80,13 +96,15 @@
             {{/times}}
           </div>
 
-          <i 
-            class="material-icons col s3 check delivered"
-
-          >check_circle</i>
+          <i class="material-icons col s3 check delivered">check_circle</i>
         </div>
       {{/each}}
     </script>
+
+    <script id="user-template" type="text/x-handlebars-template">
+      <span>Hello {{username}}</span>
+    </script>
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
