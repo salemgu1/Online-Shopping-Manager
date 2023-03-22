@@ -1,7 +1,6 @@
 const Render = function () {
-   orders = [];
+  orders = [];
   const orderApi = new OrderApiManager();
-
 
   const getUnDeliveredOrdersFromDB = async function () {
     orders = await orderApi.getUndeliveredOrders();
@@ -10,7 +9,7 @@ const Render = function () {
 
   const renderUnDeliveredOrders = function () {
     getUnDeliveredOrdersFromDB().then(() => {
-      const orderSource = $("#order").html();
+      const orderSource = $("#order-template").html();
       const orderTemplate = Handlebars.compile(orderSource);
       $("#orders-container").empty();
       let newElem = orderTemplate({ orders });
