@@ -1,5 +1,3 @@
-const schedule = require("node-schedule");
-
 const render = Render();
 render.renderUnDeliveredOrders();
 
@@ -18,7 +16,6 @@ function removeElement() {
   $(this).closest(".order").empty();
 }
 
-// run the function at midnight
-const startNewDay = schedule.scheduleJob("01 00 00 * * *", function () {
-  render.renderUnDeliveredOrders();
-});
+let renderOrders = render.renderUnDeliveredOrders;
+
+setInterval(renderOrders, 60000 * 60);
