@@ -18,6 +18,15 @@ function removeElement() {
   render.renderUnDeliveredOrders()
 }
 
+
+$("#reset").keyup(function(event) {
+  if (event.keyCode === 13) {
+    let newBudget = $("#reset").val()
+    render.resetBudget(parseInt(newBudget))
+    $("#reset").val("")
+  }
+});
+
 $('.sorting').change(function(){
 const sortBy = $(this).data().sort
 return $.ajax({
@@ -41,6 +50,5 @@ let renderOrders = render.renderUnDeliveredOrders;
 setInterval(renderOrders, 60000 * 60);
 
 
-console.log("budget is here");
 
 

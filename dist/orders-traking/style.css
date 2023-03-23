@@ -58,7 +58,13 @@ body {
   right: 2%;
 }
 #budget {
-  right: 30%;
+  right: 35%;
+}
+
+#budget_reset{
+  right: 9%;
+  font-size: 1.5rem;
+  color: white;
 }
 .add {
   position: absolute;

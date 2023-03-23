@@ -41,23 +41,7 @@ router.get("/undeliverd", authenticateToken, async function (req, res) {
 router.get("/budget", authenticateToken, async function (req, res) {
   try {
     const user = await findUser(req.user.id, req.user.username);
-    console.log("request come fro bahjat");
-    let orderForUserIDS = user[0].orders;
-    
-    getOrders(orderForUserIDS).then((result) => {
-      let filteredOrders = result.map((order) => {
-        return {
-          id: order.id,
-          shopLogo: order.shopLogo,
-          days: time.getDatesDiff(order.orderDate, order.arrivalDate),
-          dayesPassed: time.getPassedDays(order.orderDate),
-          description: order.description,
-          isDelivered: order.isDelivered,
-        };
-      });
-      filteredOrders = filteredOrders.filter(o => o.isDelivered == false)
-      res.send({ budget: user[0].budget });
-    });
+    res.send({ username: user[0].username, budget: user[0].budget });
   } catch (error) {
     console.log(error);
     res.status(401).send({ message: "Invalid token" });
@@ -109,6 +93,18 @@ router.post("/create", authenticateToken, async function (req, res) {
     { new: true }
   );
   budgetUtils.budgetDecrement(user,newOrder)
+  res.send(user);
+});
+
+router.post("/resetBudget", authenticateToken, async function (req, res) {
+  const userObj = await findUser(req.user.id, req.user.username);
+  let newBudget = req.body.budget;
+  console.log(newBudget);
+  let user = await User.findOneAndUpdate(
+    { username: userObj[0].username },
+    { budget: newBudget },
+    { new: true }
+  );
   res.send(user);
 });
 

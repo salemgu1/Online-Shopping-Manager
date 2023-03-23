@@ -10,12 +10,16 @@ const Render = function () {
     return userAndOrders;
   };
 
-  
+  const resetBudget = async function(newBudget){
+    orderApi.resetUserBudget(newBudget)
+    
+    
+};
 
 
   const renderBudget = async function(){
-    let userBudget = await orderApi.getUserBudget();
-    let budget = userBudget.budget
+    let userAndBudget = await orderApi.getUserAndBudget();
+    let budget = userAndBudget.budget
     const source = $('#budget-template').html();
     const template = Handlebars.compile(source);
     const newHTML = template({'Budget' : budget});
@@ -69,5 +73,6 @@ const Render = function () {
     renderUnDeliveredOrders,
     renderInSortingOrder,
     renderBudget,
+    resetBudget
   };
 };
