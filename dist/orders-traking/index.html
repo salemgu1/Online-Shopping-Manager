@@ -48,7 +48,7 @@
               type="radio"
               class="sorting"
             />
-            <span>by arrival date</span>
+            <span>Arrival date</span>
           </label>
         </p>
         <p>
@@ -59,7 +59,7 @@
               data-sort="cost"
               class="sorting"
             />
-            <span>by order cost</span>
+            <span>Order cost</span>
           </label>
         </p>
         <p>
@@ -70,7 +70,7 @@
               type="radio"
               data-sort="app"
             />
-            <span>by shop name</span>
+            <span>Shop name</span>
           </label>
         </p>
       </form>
@@ -88,7 +88,7 @@
 
     <script id="order-template" type="text/x-handlebars-template">
       {{#each orders}}
-        <div class="order row" data-title={{description}}>
+        <div class="order row" data-title="{{description}}">
           <img class="icon col s2" src="{{shopLogo}}" />
           <div class="bar col s7" data-id="{{id}}">
             {{#times days}}

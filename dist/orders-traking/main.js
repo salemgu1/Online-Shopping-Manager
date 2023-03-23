@@ -20,11 +20,22 @@ function removeElement() {
 
 $('.sorting').change(function(){
 const sortBy = $(this).data().sort
-$.get(`http://localhost:3000/order/sort?sort=${sortBy}`).then(orders =>{
+return $.ajax({
+  url: `http://localhost:3000/order/sort?sort=${sortBy}`,
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+  success: function (response) {
+    render.renderInSortingOrder(response)
+  },
+  // if there is an error in autherization we go back to login page
+  error: function (res, status, error) {
+    location.href = "/";
+  },
+});
+})
 
-    render.renderInSortingOrder(orders)
-})
-})
 let renderOrders = render.renderUnDeliveredOrders;
 
 setInterval(renderOrders, 60000 * 60);
