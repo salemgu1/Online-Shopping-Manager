@@ -1,5 +1,6 @@
 const render = Render();
 render.renderUnDeliveredOrders();
+render.renderBudget()
 
 function SignOut() {
   localStorage.removeItem('token');
@@ -27,3 +28,8 @@ $.get(`http://localhost:3000/order/sort?sort=${sortBy}`).then(orders =>{
 let renderOrders = render.renderUnDeliveredOrders;
 
 setInterval(renderOrders, 60000 * 60);
+
+
+console.log("budget is here");
+
+

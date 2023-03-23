@@ -75,6 +75,13 @@ router.post("/login", (req, res) => {
 });
 
 
+router.get('/orders/:username', function (req,res) {
+  let userName = req.params.username
+  User.find({username: userName}).select({ "orders": 1, "_id": 0}).populate("orders").exec().then((userOrders) => {
+    res.send(userOrders)
+  })
+})
+
 const existUser = function (usersArray, username) {
   let flag = false;
   const findUser = usersArray.find((user) => {

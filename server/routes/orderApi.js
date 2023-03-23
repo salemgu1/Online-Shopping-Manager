@@ -4,6 +4,7 @@ const Order = require("../models/order");
 const User = require("../models/user");
 const router = express.Router();
 const time = require("../utils/time");
+const budgetUtils = require("../utils/budget_utils");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const secretKey = "my_secret_key";
@@ -13,8 +14,8 @@ const orderUtils = require("../utils/order_utils");
 router.get("/undeliverd", authenticateToken, async function (req, res) {
   try {
     const user = await findUser(req.user.id, req.user.username);
-    console.log("request come");
     let orderForUserIDS = user[0].orders;
+    
     getOrders(orderForUserIDS).then((result) => {
       let filteredOrders = result.map((order) => {
         return {
@@ -23,7 +24,7 @@ router.get("/undeliverd", authenticateToken, async function (req, res) {
           days: time.getDatesDiff(order.orderDate, order.arrivalDate),
           dayesPassed: time.getPassedDays(order.orderDate),
           description: order.description,
-          isDelivered: order.isDelivered
+          isDelivered: order.isDelivered,
         };
       });
       filteredOrders = filteredOrders.filter(o => o.isDelivered == false)
@@ -34,6 +35,35 @@ router.get("/undeliverd", authenticateToken, async function (req, res) {
     res.status(401).send({ message: "Invalid token" });
   }
 });
+
+
+router.get("/budget", authenticateToken, async function (req, res) {
+  try {
+    const user = await findUser(req.user.id, req.user.username);
+    console.log("request come fro bahjat");
+    let orderForUserIDS = user[0].orders;
+    
+    getOrders(orderForUserIDS).then((result) => {
+      let filteredOrders = result.map((order) => {
+        return {
+          id: order.id,
+          shopLogo: order.shopLogo,
+          days: time.getDatesDiff(order.orderDate, order.arrivalDate),
+          dayesPassed: time.getPassedDays(order.orderDate),
+          description: order.description,
+          isDelivered: order.isDelivered,
+        };
+      });
+      filteredOrders = filteredOrders.filter(o => o.isDelivered == false)
+      res.send({ budget: user[0].budget });
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(401).send({ message: "Invalid token" });
+  }
+});
+
+
 
 const getOrders = async function (ordersIds) {
   ordersObj = [];
@@ -77,7 +107,8 @@ router.post("/create", authenticateToken, async function (req, res) {
     { $push: { orders: newOrder } },
     { new: true }
   );
-  res.send(newOrder);
+  budgetUtils.budgetDecrement(user,newOrder)
+  res.send(user);
 });
 
 router.put("/update", function (req, res) {

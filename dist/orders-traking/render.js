@@ -10,6 +10,18 @@ const Render = function () {
     return userAndOrders;
   };
 
+  
+
+
+  const renderBudget = async function(){
+    let userBudget = await orderApi.getUserBudget();
+    let budget = userBudget.budget
+    const source = $('#budget-template').html();
+    const template = Handlebars.compile(source);
+    const newHTML = template({'Budget' : budget});
+    $("#budget").append(newHTML)
+};
+
   const renderUserName = function () {
     const userSource = $("#user-template").html();
     const userTemplate = Handlebars.compile(userSource);
@@ -48,8 +60,14 @@ const Render = function () {
     colorPassedDays();
   };
 
+
+  
+
+
+
   return {
     renderUnDeliveredOrders,
     renderInSortingOrder,
+    renderBudget,
   };
 };
