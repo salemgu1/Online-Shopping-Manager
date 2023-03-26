@@ -135,7 +135,7 @@ router.get("/sort", authenticateToken , async function (req, res) {
   } else if (sortBy === "cost") {
     getOrders(orderForUserIDS)
       .then((orders) => {
-        orders = orders.sort((a,b) => a.orderPrice - b.orderPrice)
+        orders = orders.sort((a,b) => b.orderPrice - a.orderPrice)
         res.send(filterOrders(orders))
       })
   } else if (sortBy == "date") {
